@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountActivity">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/bottom_background"
+        android:elevation="15dp"
+        app:backgroundTint="@color/blue"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemRippleColor="@android:color/transparent"
+        app:itemTextAppearance="@style/TextAppearance.AppCompat.Large"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="414dp"
+        android:layout_height="330dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/login_regsiter" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="318dp"
+        android:layout_height="267dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.749">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/logoutLink"
+                android:layout_width="87dp"
+                android:layout_height="38dp"
+                android:layout_marginEnd="200dp"
+                android:layout_marginBottom="28dp"
+                android:gravity="center"
+                android:text="Logout"
+                android:textColor="@color/blue"
+                android:textColorHint="@color/blue"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView2" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="40dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="200dp"
+                android:layout_marginBottom="28dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/logoutLink"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/logout" />
+
+            <TextView
+                android:id="@+id/userEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/logoutLink"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.028"
+                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintTop_toBottomOf="@+id/imageView8"
+                app:layout_constraintVertical_bias="0.615" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="72dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="28dp"
+                app:layout_constraintBottom_toTopOf="@+id/logoutLink"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView8"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/account" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="160dp"
+                android:layout_height="74dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="80dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/grotto_logo" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

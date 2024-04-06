@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "16796669737",
+    "firebase_url": "https://furniture-app-e6b25-default-rtdb.firebaseio.com",
+    "project_id": "furniture-app-e6b25",
+    "storage_bucket": "furniture-app-e6b25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16796669737:android:a195a27a7b749dfe09c938",
+        "android_client_info": {
+          "package_name": "com.example.joemol_joy_project2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7w9nrKuDASLnWVs0yNlTXM-nsR0IgSMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
