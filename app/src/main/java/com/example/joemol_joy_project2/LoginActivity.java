@@ -59,20 +59,29 @@ public class LoginActivity extends AppCompatActivity {
 
             if(TextUtils.isEmpty(email)){
 //                Toast.makeText(this,"Enter email",Toast.LENGTH_SHORT).show();
+                textInputEditEmail.setError("Enter email");
                 textInputEmailBox.setError("Enter email");
                 return;
             }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                textInputEditEmail.setError("Invalid email address");
                 textInputEmailBox.setError("Invalid email address");
                 return;
             } else {
+                textInputEditEmail.setError(null);
                 textInputEmailBox.setError(null);
             }
             if(TextUtils.isEmpty(password)){
 //                Toast.makeText(this,"Enter password",Toast.LENGTH_SHORT).show();
                 textInputPasswordBox.setError("Enter password");
+                textInputEditPassword.setError("Enter password");
                 return;
-            }else {
+            } else if (password.length() < 6) {
+                textInputPasswordBox.setError("Password must be at least 6 characters long");
+                textInputEditPassword.setError("Password must be at least 6 characters long");
+                return;
+            } else {
                 textInputPasswordBox.setError(null);
+                textInputEditPassword.setError(null);
             }
 
             mAuth.signInWithEmailAndPassword(email, password)
