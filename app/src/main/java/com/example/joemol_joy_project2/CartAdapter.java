@@ -108,28 +108,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             userCartReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    boolean productExists = false;
                     for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
                         String existingProductName = productSnapshot.child("productName").getValue(String.class);
                         if (existingProductName != null && existingProductName.equals(currentItem.getName())) {
                             // Product exists in the cart, update its quantity and price
                             productSnapshot.getRef().child("totalQuantity").setValue(currentItem.getQuantity());
                             productSnapshot.getRef().child("totalPrice").setValue(totalPrice);
-                            productExists = true;
                             break;
                         }
                     }
-//                    if (productExists) {
-//                        Toast.makeText(mContext, "Update Cart", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Log.e("CartAdapter", "No product found to update");
-//                    }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     // Handle errors
-                    Toast.makeText(mContext, "Failed to update cart", Toast.LENGTH_SHORT).show();
                     Log.e("CartAdapter", "Failed to update cart", databaseError.toException());
                 }
             });

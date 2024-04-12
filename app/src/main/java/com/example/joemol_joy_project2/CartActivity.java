@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,6 +26,8 @@ import java.util.ArrayList;
 public class CartActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    TextView subTotal, tax, finalTotal;
+    Button checkoutBtn;
     RecyclerView recyclerView;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager layoutManager;
@@ -38,6 +42,7 @@ public class CartActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.action_cart);
+
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -58,6 +63,10 @@ public class CartActivity extends AppCompatActivity {
             }
             return false;
         });
+        subTotal = findViewById(R.id.subTotal);
+        tax = findViewById(R.id.tax);
+        finalTotal = findViewById(R.id.finalTotal);
+        checkoutBtn = findViewById(R.id.checkoutBtn);
 
         recyclerView = findViewById(R.id.rView);
         recyclerView.setHasFixedSize(true);
@@ -79,20 +88,36 @@ public class CartActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     cartList.clear(); // Clear the existing list before adding new items
+                    double subPrice = 0.00;
                     for (DataSnapshot cartSnapshot : snapshot.getChildren()) {
                         String url = cartSnapshot.child("productImage").getValue(String.class);
                         String name = cartSnapshot.child("productName").getValue(String.class);
                         Integer quantity = cartSnapshot.child("totalQuantity").getValue(Integer.class);
                         Double price = cartSnapshot.child("productPrice").getValue(Double.class);
+                        Double totalPrice = cartSnapshot.child("totalPrice").getValue(Double.class);
                         String firebaseKeyId = cartSnapshot.getKey();
 
-                        if (name != null &&  url != null && price != null && quantity != null) {
-                            CartItem cartItem = new CartItem(firebaseKeyId, url, name, price, quantity);
+                        if (name != null &&  url != null && price != null && totalPrice != null && quantity != null) {
+                            CartItem cartItem = new CartItem(firebaseKeyId, url, name, price, totalPrice, quantity);
                             cartList.add(cartItem);
+
+                            // Accumulate the price of each item to calculate the subtotal
+                            subPrice += totalPrice;
                         } else {
                             Log.e("Error", "One or more fields are null for product with ID: " + cartSnapshot.getKey());
                         }
                     }
+
+                    // Calculate subtotal, tax, and final total
+                    double subtotal = subPrice;
+                    double taxAmount = subtotal * 0.13; // 13% tax
+                    double finalTotalAmount = subtotal + taxAmount;
+
+                    // Update TextViews with calculated values
+                    subTotal.setText(String.format("$%.2f", subtotal));
+                    tax.setText(String.format("$%.2f", taxAmount));
+                    finalTotal.setText(String.format("$%.2f", finalTotalAmount));
+
                     mAdapter.notifyDataSetChanged();
                 }
 
@@ -103,5 +128,12 @@ public class CartActivity extends AppCompatActivity {
                 }
             });
         }
+
+        checkoutBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CheckoutActivity.class);
+            startActivity(intent);
+        });
+
+
     }
 }

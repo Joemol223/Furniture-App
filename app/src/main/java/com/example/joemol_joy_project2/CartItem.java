@@ -5,19 +5,21 @@ public class CartItem {
     private String firebaseKey; // Firebase key for the cart item
     private String name;
     private double price;
-    private int quantity;
 
+    private double totalPrice;
+    private int quantity;
     private String url;
 
     public CartItem(){
 
     }
 
-    public CartItem(String firebaseKeyId, String url, String name, Double price, Integer quantity) {
+    public CartItem(String firebaseKeyId, String url, String name, Double price, Double totalPrice, Integer quantity) {
         this.firebaseKey = firebaseKey;
         this.name = name;
         this.url = url;
         this.price = price;
+        this.totalPrice = totalPrice;
         this.quantity = quantity;
     }
 
@@ -59,5 +61,12 @@ public class CartItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
