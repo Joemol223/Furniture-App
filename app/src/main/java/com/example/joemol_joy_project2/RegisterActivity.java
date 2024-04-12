@@ -90,9 +90,9 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth.fetchSignInMethodsForEmail(email)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        if (task.getResult().getSignInMethods() != null && task.getResult().getSignInMethods().isEmpty()) {
-                            Toast.makeText(RegisterActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
-                        } else {
+//                        if (task.getResult().getSignInMethods() != null && task.getResult().getSignInMethods().isEmpty()) {
+//                            Toast.makeText(RegisterActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
+//                        } else {
                             mAuth.createUserWithEmailAndPassword(email, password)
                                     .addOnCompleteListener(RegisterActivity.this, createUserTask -> {
                                         if (createUserTask.isSuccessful()) {
@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                                         }
                                     });
-                        }
+
                     } else {
                         Log.e("CheckEmail", "Error checking email existence", task.getException());
                         Toast.makeText(RegisterActivity.this, "Error checking email existence", Toast.LENGTH_SHORT).show();

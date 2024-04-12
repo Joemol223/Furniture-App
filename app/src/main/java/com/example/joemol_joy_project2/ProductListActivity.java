@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +27,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class ProductListActivity extends AppCompatActivity implements  ProductInterface{
@@ -75,7 +79,7 @@ public class ProductListActivity extends AppCompatActivity implements  ProductIn
         recyclerView.setLayoutManager(layoutManager);
 
         productList = new ArrayList<>();
-        mAdapter = new ProductAdapter(productList, this);
+        mAdapter = new ProductAdapter(productList, this, database, FirebaseAuth.getInstance(), this);
         recyclerView.setAdapter(mAdapter);
 
         database =  FirebaseDatabase.getInstance();

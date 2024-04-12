@@ -10,19 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Objects;
-
-import kotlin.collections.DoubleIterator;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
@@ -33,7 +31,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     double totalPrice = 0;
     String name, longDesc, url;
     Double price;
-
     DatabaseReference cartReference;
     FirebaseAuth auth;
 
@@ -91,15 +88,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
         cartReference = FirebaseDatabase.getInstance().getReference().child("AddToCart");
         auth = FirebaseAuth.getInstance();
 
-
-
         addToCartBtn.setOnClickListener(view -> {
-            adddedToCart();
+            addedToCart();
         });
-
     }
 
-    private void adddedToCart() {
+    private void addedToCart() {
         String saveCurrentDate, saveCurrentTime;
         Calendar calForDate = Calendar.getInstance();
 
@@ -109,30 +103,53 @@ public class ProductDetailsActivity extends AppCompatActivity {
         SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
         saveCurrentDate = currentDate.format(calForDate.getTime());
 
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:MM:SS a");
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calForDate.getTime());
 
         final HashMap<String, Object> cartMap = new HashMap<>();
-
+        cartMap.put("productImage", url);
         cartMap.put("productName", name);
-        cartMap.put("productPrice", priceDetail.getText().toString());
+        cartMap.put("productPrice",price);
         cartMap.put("currentDate", saveCurrentDate);
         cartMap.put("currentTime", saveCurrentTime);
-        cartMap.put("totalQuantity", quantity.getText().toString());
+        cartMap.put("totalQuantity", totalQuantity);
         cartMap.put("totalPrice", totalPrice);
 
-        cartReference.child(auth.getCurrentUser().getUid())
-                .child("CurrentUser").push().setValue(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()) {
-                            Toast.makeText(ProductDetailsActivity.this, "Added To Cart", Toast.LENGTH_SHORT).show();
-                            finish();
-                        } else {
-                            Toast.makeText(ProductDetailsActivity.this, "Failed to add to cart", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        DatabaseReference userCartReference = cartReference.child(auth.getCurrentUser().getUid()).child("CurrentUser");
 
+        userCartReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean productExists = false;
+                for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
+                    String existingProductName = productSnapshot.child("productName").getValue(String.class);
+                    if (existingProductName != null && existingProductName.equals(name)) {
+
+                        // Product exists in the cart, update its quantity and price
+                        int existingQuantity = Integer.parseInt(String.valueOf(productSnapshot.child("totalQuantity").getValue()));;
+                        int newQuantity = existingQuantity + totalQuantity;
+                        double newPrice = price * newQuantity;
+                        productSnapshot.getRef().child("totalQuantity").setValue(newQuantity);
+                        productSnapshot.getRef().child("totalPrice").setValue(newPrice);
+                        productExists = true;
+                        Toast.makeText(ProductDetailsActivity.this, "Cart Updated", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                }
+                if (!productExists) {
+                    // Product does not exist in the cart, add it
+                    userCartReference.push().setValue(cartMap);
+                }
+                Toast.makeText(ProductDetailsActivity.this, "Added To Cart", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors
+                Toast.makeText(ProductDetailsActivity.this, "Failed to add to cart", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 }
