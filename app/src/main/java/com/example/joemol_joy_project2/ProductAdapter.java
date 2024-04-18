@@ -93,7 +93,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         void bind(Product product) {
             productName.setText(product.getName());
             productDesc.setText(product.getDesc());
-            productPrice.setText("$" + String.valueOf(product.getPrice()));
+            productPrice.setText(String.format("$%.2f", product.getPrice()));
             Picasso.get().load(product.getImage()).into(productImage);
         }
 

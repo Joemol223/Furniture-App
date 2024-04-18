@@ -29,7 +29,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     Button addToCartBtn;
     int totalQuantity = 1;
     double totalPrice = 0;
-    String name, longDesc, url;
+    String name, longDesc, url, detailUrl;
     Double price;
     DatabaseReference cartReference;
     FirebaseAuth auth;
@@ -41,8 +41,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         name = getIntent().getStringExtra("name");
         longDesc = getIntent().getStringExtra("longDesc");
-        price = getIntent().getDoubleExtra("price",15.99);
+        price = getIntent().getDoubleExtra("price",00.00);
         url = getIntent().getStringExtra("url");
+        detailUrl = getIntent().getStringExtra("detailUrl");
 
         nameDetail = findViewById(R.id.nameDetail);
         descDetail = findViewById(R.id.descDetail);
@@ -57,8 +58,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         nameDetail.setText(name);
         descDetail.setText(longDesc);
-        priceDetail.setText("$" + String.valueOf(price));
-        Picasso.get().load(url).into(imageDetail);
+        priceDetail.setText(String.format("$%.2f", price));
+        Picasso.get().load(detailUrl).into(imageDetail);
 
         backBtn.setOnClickListener(view -> {
             Intent intent = new Intent(ProductDetailsActivity.this, ProductListActivity.class);

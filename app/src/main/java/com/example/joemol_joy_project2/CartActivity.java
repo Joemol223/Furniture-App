@@ -87,7 +87,7 @@ public class CartActivity extends AppCompatActivity {
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    cartList.clear(); // Clear the existing list before adding new items
+                    cartList.clear();
                     double subPrice = 0.00;
                     for (DataSnapshot cartSnapshot : snapshot.getChildren()) {
                         String url = cartSnapshot.child("productImage").getValue(String.class);
@@ -101,19 +101,16 @@ public class CartActivity extends AppCompatActivity {
                             CartItem cartItem = new CartItem(firebaseKeyId, url, name, price, totalPrice, quantity);
                             cartList.add(cartItem);
 
-                            // Accumulate the price of each item to calculate the subtotal
                             subPrice += totalPrice;
                         } else {
                             Log.e("Error", "One or more fields are null for product with ID: " + cartSnapshot.getKey());
                         }
                     }
 
-                    // Calculate subtotal, tax, and final total
                     double subtotal = subPrice;
-                    double taxAmount = subtotal * 0.13; // 13% tax
+                    double taxAmount = subtotal * 0.13;
                     double finalTotalAmount = subtotal + taxAmount;
 
-                    // Update TextViews with calculated values
                     subTotal.setText(String.format("$%.2f", subtotal));
                     tax.setText(String.format("$%.2f", taxAmount));
                     finalTotal.setText(String.format("$%.2f", finalTotalAmount));

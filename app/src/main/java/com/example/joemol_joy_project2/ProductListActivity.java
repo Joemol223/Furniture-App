@@ -33,7 +33,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class ProductListActivity extends AppCompatActivity implements  ProductInterface{
+public class ProductListActivity extends AppCompatActivity implements ProductInterface{
 
 
     BottomNavigationView bottomNavigationView;
@@ -93,10 +93,11 @@ public class ProductListActivity extends AppCompatActivity implements  ProductIn
                     String desc = productSnapshot.child("desc").getValue(String.class);
                     String longDesc = productSnapshot.child("longDesc").getValue(String.class);
                     String url = productSnapshot.child("url").getValue(String.class);
+                    String detailUrl = productSnapshot.child("detailUrl").getValue(String.class);
                     Double price = productSnapshot.child("price").getValue(Double.class);
 
-                    if (name != null && desc != null && longDesc != null &&  url != null && price != null) {
-                        Product product = new Product(url, name, desc,longDesc, price);
+                    if (name != null && detailUrl != null && desc != null && longDesc != null &&  url != null && price != null) {
+                        Product product = new Product(url, detailUrl, name, desc,longDesc, price);
                         productList.add(product);
                     } else {
                         Log.e("Error", "One or more fields are null for product with ID: " + productSnapshot.getKey());
@@ -121,6 +122,7 @@ public class ProductListActivity extends AppCompatActivity implements  ProductIn
         intent.putExtra("longDesc", productList.get(position).getLongDesc());
         intent.putExtra("price", productList.get(position).getPrice());
         intent.putExtra("url", productList.get(position).getImage());
+        intent.putExtra("detailUrl", productList.get(position).getDetailUrl());
 
         startActivity(intent);
     }

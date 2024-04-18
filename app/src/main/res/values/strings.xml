@@ -11,6 +11,5 @@
     <string name="password">Password</string>
     <string name="register_page">register page</string>
     <string name="need_an_account">Need an account?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_to_cart">Add To Cart</string>
 </resources>

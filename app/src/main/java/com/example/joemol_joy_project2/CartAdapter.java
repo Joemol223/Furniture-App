@@ -32,7 +32,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         this.mCartItems = cartItems;
         this.mContext = context;
         this.mCartReference = cartReference;
-        this.mAuth = FirebaseAuth.getInstance(); // Initialize FirebaseAuth
+        this.mAuth = FirebaseAuth.getInstance();
     }
 
     @NonNull
@@ -69,14 +69,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             addCount = itemView.findViewById(R.id.addCount);
             minusCount = itemView.findViewById(R.id.minusCount);
 
-            // Add click listener to addCount ImageView
             addCount.setOnClickListener(v -> {
                 currentItem.setQuantity(currentItem.getQuantity() + 1);
                 count.setText(String.valueOf(currentItem.getQuantity()));
                 updateQuantityPrice();
             });
 
-            // Add click listener to minusCount ImageView
             minusCount.setOnClickListener(v -> {
                 if (currentItem.getQuantity() > 1) {
                     currentItem.setQuantity(currentItem.getQuantity() - 1);
@@ -85,23 +83,21 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 }
             });
 
-            // Add click listener to delete ImageView
             delete.setOnClickListener(v -> deleteProductFromCart(currentItem));
         }
 
         void bind(CartItem cartItem) {
-            currentItem = cartItem; // Save current item for click listeners
+            currentItem = cartItem;
             cartProductName.setText(cartItem.getName());
-            cartProductPrice.setText("$" + String.valueOf(cartItem.getPrice()) + "/item");
+            cartProductPrice.setText(String.format("$%.2f", cartItem.getPrice()) + "/item");
             count.setText(String.valueOf(cartItem.getQuantity()));
-            updateQuantityPrice(); // Update quantityPrice initially
+            updateQuantityPrice();
             Picasso.get().load(cartItem.getImage()).into(cartImg);
         }
 
         private void updateQuantityPrice() {
-            // Calculate the total price for the item based on quantity
             double totalPrice = currentItem.getPrice() * currentItem.getQuantity();
-            quantityPrice.setText("$" + String.valueOf(totalPrice));
+            quantityPrice.setText(String.format("$%.2f", totalPrice));
 
             DatabaseReference userCartReference = mCartReference.child(mAuth.getCurrentUser().getUid()).child("CurrentUser");
 
@@ -121,7 +117,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Handle errors
                     Log.e("CartAdapter", "Failed to update cart", databaseError.toException());
                 }
             });
@@ -140,7 +135,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Handle errors
                     Toast.makeText(mContext, "Failed to delete product from cart", Toast.LENGTH_SHORT).show();
                     Log.e("CartAdapter", "Failed to delete product from cart", databaseError.toException());
                 }

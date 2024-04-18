@@ -2,6 +2,7 @@ package com.example.joemol_joy_project2;
 
 public class Product {
     private String url;
+    private String detailUrl;
     private String name;
     private String desc;
     private String longDesc;
@@ -11,8 +12,9 @@ public class Product {
 
     }
 
-    public Product(String url, String name, String desc,String longDesc, double price) {
+    public Product(String url, String detailUrl, String name, String desc,String longDesc, double price) {
         this.url = url;
+        this.detailUrl = detailUrl;
         this.name = name;
         this.desc = desc;
         this.longDesc = longDesc;
@@ -26,6 +28,10 @@ public class Product {
     public void setImage(String url) {
         this.url = url;
     }
+
+    public String getDetailUrl() { return detailUrl; }
+
+    public void setDetailUrl(String detailUrl) { this.detailUrl = detailUrl; }
 
     public String getName() {
         return name;
