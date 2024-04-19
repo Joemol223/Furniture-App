@@ -14,7 +14,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     Button getStartedButton;
-    TextView loginLink;
     FirebaseAuth mAuth;
 
     @Override
@@ -25,25 +24,18 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         getStartedButton = findViewById(R.id.getStartedButton);
-        loginLink = findViewById(R.id.loginLink);
 
         getStartedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                FirebaseUser currentUser = mAuth.getCurrentUser();
-//                if(currentUser != null){
-//                    // User is already logged in, navigate to ProductListActivity
-//                    startActivity(new Intent(MainActivity.this, ProductListActivity.class));
-//                } else {
-                    // User is not logged in, navigate to RegisterActivity
-                    startActivity(new Intent(MainActivity.this, RegisterActivity.class));
-//                }
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if(currentUser != null){
+                    startActivity(new Intent(MainActivity.this, ProductListActivity.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
             }
         });
 
-        loginLink.setOnClickListener(view ->{
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-        });
     }
 }

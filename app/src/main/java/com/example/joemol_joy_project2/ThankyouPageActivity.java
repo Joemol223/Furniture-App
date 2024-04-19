@@ -5,13 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class ThankyouPageActivity extends AppCompatActivity {
 
-    Button shoppingBtn, logoutBtn;
+    Button shoppingBtn;
+    ImageView logoutBtn;
     FirebaseAuth auth;
     FirebaseUser user;
 

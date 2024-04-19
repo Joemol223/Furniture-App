@@ -91,12 +91,12 @@ public class CheckoutActivity extends AppCompatActivity {
             }
 
             if (isEmpty(pinEditText)) {
-                textInputPinBox.setError("PIN cannot be empty");
+                textInputPinBox.setError("Zip Code cannot be empty");
                 isValid = false;
             } else {
                 textInputPinBox.setError(null);
                 if (!isPin(pinEditText)) {
-                    textInputPinBox.setError("PIN must be 6 digits");
+                    textInputPinBox.setError("Zip Code must be 6 digits");
                     isValid = false;
                 }
             }

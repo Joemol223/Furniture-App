@@ -12,11 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -59,12 +56,10 @@ public class RegisterActivity extends AppCompatActivity {
             password = String.valueOf(textInputEditPassword.getText());
 
             if(TextUtils.isEmpty(email)){
-//                Toast.makeText(this,"Enter email",Toast.LENGTH_SHORT).show();
                 textInputEmailBox.setError("Enter email");
                 textInputEditEmail.setError("Enter email");
                 return;
             } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//               Toast.makeText(this,"Invalid email address",Toast.LENGTH_SHORT).show();
                 textInputEmailBox.setError("Invalid email address");
                 textInputEditEmail.setError("Invalid email address");
                 return;
@@ -74,11 +69,10 @@ public class RegisterActivity extends AppCompatActivity {
         textInputEditEmail.setError(null);
         }
             if(TextUtils.isEmpty(password)){
-  //             Toast.makeText(this,"Enter password",Toast.LENGTH_SHORT).show();
                 textInputPasswordBox.setError("Enter password");
                 textInputEditPassword.setError("Enter password");
                 return;
-            } else if (password.length() < 6) {
+            } else if (password.length() <= 6) {
                 textInputPasswordBox.setError("Password must be at least 6 characters long");
                 textInputEditPassword.setError("Password must be at least 6 characters long");
                 return;
