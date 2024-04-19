@@ -98,7 +98,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         }
 
         private void addToCart(Product product) {
-            // Reference to the user's cart based on their UID
             DatabaseReference cartReference = FirebaseDatabase.getInstance().getReference().child("AddToCart").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("CurrentUser");
 
             String saveCurrentDate, saveCurrentTime;
@@ -122,23 +121,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             cartMap.put("totalQuantity", totalQuantity);
             cartMap.put("totalPrice", totalPrice);
 
-            // Check if the product already exists in the user's cart
             cartReference.orderByChild("productName").equalTo(product.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            // Product exists in the cart, update its quantity and price
                             int existingQuantity = snapshot.child("totalQuantity").getValue(Integer.class);
                             int newQuantity = existingQuantity + totalQuantity;
                             double newPrice = product.getPrice() * newQuantity;
                             snapshot.getRef().child("totalQuantity").setValue(newQuantity);
                             snapshot.getRef().child("totalPrice").setValue(newPrice);
                             Toast.makeText(context, "Cart Updated", Toast.LENGTH_SHORT).show();
-                            return; // Exit the loop after updating the product
+                            return;
                         }
                     } else {
-                        // Product does not exist in the cart, add it
                         cartReference.push().setValue(cartMap);
                         Toast.makeText(context, "Added To Cart", Toast.LENGTH_SHORT).show();
                     }

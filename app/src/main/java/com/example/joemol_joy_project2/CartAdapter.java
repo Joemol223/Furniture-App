@@ -70,9 +70,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             minusCount = itemView.findViewById(R.id.minusCount);
 
             addCount.setOnClickListener(v -> {
-                currentItem.setQuantity(currentItem.getQuantity() + 1);
-                count.setText(String.valueOf(currentItem.getQuantity()));
-                updateQuantityPrice();
+                if(currentItem.getQuantity() < 10) {
+                    currentItem.setQuantity(currentItem.getQuantity() + 1);
+                    count.setText(String.valueOf(currentItem.getQuantity()));
+                    updateQuantityPrice();
+                }
             });
 
             minusCount.setOnClickListener(v -> {
