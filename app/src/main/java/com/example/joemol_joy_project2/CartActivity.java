@@ -127,8 +127,12 @@ public class CartActivity extends AppCompatActivity {
         }
 
         checkoutBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(this, CheckoutActivity.class);
-            startActivity(intent);
+            if (cartList.isEmpty()) {
+                Toast.makeText(this, "Please add cart item to proceed.", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(this, CheckoutActivity.class);
+                this.startActivity(intent);
+            }
         });
 
 

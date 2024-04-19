@@ -45,7 +45,6 @@ public class AccountActivity extends AppCompatActivity {
                 return true;
             }
             else if(id == R.id.action_account) {
-
                 return true;
             }
             return false;

@@ -4,13 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,6 +27,8 @@ public class PaymentActivity extends AppCompatActivity {
     TextInputEditText cardNumberEditText, expiryDateEditText, cvvEditText, cardholderNameEditText;
     TextInputLayout cardNumberLayout, expiryDateLayout, cvvLayout, cardholderNameLayout;
     AwesomeValidation awesomeValidation;
+    DatabaseReference mCartReference;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +44,8 @@ public class PaymentActivity extends AppCompatActivity {
         expiryDateLayout = findViewById(R.id.textInputDateBox);
         cvvLayout = findViewById(R.id.textInputCvvBox);
         cardholderNameLayout = findViewById(R.id.textInputCardnameBox);
+        mCartReference = FirebaseDatabase.getInstance().getReference("AddToCart");
+        mAuth = FirebaseAuth.getInstance();
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
@@ -90,6 +100,7 @@ public class PaymentActivity extends AppCompatActivity {
                 cardholderNameLayout.setError(null);
             }
             if (isValid && awesomeValidation.validate()) {
+                deleteItemsFromCart();
                 Intent intent = new Intent(this, ThankyouPageActivity.class);
                 startActivity(intent);
             }
@@ -125,5 +136,17 @@ public class PaymentActivity extends AppCompatActivity {
     private boolean isValidCVV(TextInputEditText editText) {
         String cvv = editText.getText().toString().trim();
         return cvv.matches("^[0-9]{3}$");
+    }
+
+    private void deleteItemsFromCart() {
+        DatabaseReference userCartReference = mCartReference.child(mAuth.getCurrentUser().getUid()).child("CurrentUser");
+        userCartReference.removeValue()
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(PaymentActivity.this, "Order Placed", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(PaymentActivity.this, "Failed to place order", Toast.LENGTH_SHORT).show();
+                    Log.e("PaymentActivity", "Failed to place order", e);
+                });
     }
 }
