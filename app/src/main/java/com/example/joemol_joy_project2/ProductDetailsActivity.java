@@ -24,12 +24,12 @@ import java.util.HashMap;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
-    TextView nameDetail, descDetail, priceDetail, quantity;
+    TextView nameDetail, descDetail, priceDetail, colorDetail, quantity;
     ImageView imageDetail, backBtn, cartImage, addCount, minusCount;
     Button addToCartBtn;
     int totalQuantity = 1;
     double totalPrice = 0;
-    String name, longDesc, url, detailUrl;
+    String name, longDesc, url, detailUrl, color;
     Double price;
     DatabaseReference cartReference;
     FirebaseAuth auth;
@@ -44,11 +44,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         price = getIntent().getDoubleExtra("price",00.00);
         url = getIntent().getStringExtra("url");
         detailUrl = getIntent().getStringExtra("detailUrl");
+        color = getIntent().getStringExtra("color");
 
         nameDetail = findViewById(R.id.nameDetail);
         descDetail = findViewById(R.id.descDetail);
         priceDetail = findViewById(R.id.priceDetail);
         imageDetail = findViewById(R.id.imageDetail);
+        colorDetail = findViewById(R.id.colourDetail);
         backBtn = findViewById(R.id.backBtn);
         cartImage = findViewById(R.id.cartImage);
         addToCartBtn = findViewById(R.id.addToCartBtn);
@@ -58,6 +60,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         nameDetail.setText(name);
         descDetail.setText(longDesc);
+        colorDetail.setText(color);
         priceDetail.setText(String.format("$%.2f", price));
         Picasso.get().load(detailUrl).into(imageDetail);
 

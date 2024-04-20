@@ -4,193 +4,162 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckoutActivity">
+    tools:context=".PaymentActivity">
+
 
     <ImageView
         android:id="@+id/backBtn"
-        android:layout_width="90dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="301dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="101dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="3dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView5"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/back_arrow" />
 
     <ImageView
         android:id="@+id/imageView11"
         android:layout_width="130dp"
         android:layout_height="30dp"
-        android:layout_marginStart="131dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="131dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.354"
+        app:layout_constraintStart_toEndOf="@+id/backBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208"
+        app:layout_constraintVertical_bias="0.25"
         app:srcCompat="@drawable/grotto_logo" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="107dp"
+        android:layout_width="568dp"
+        android:layout_height="315dp"
+        android:layout_marginTop="40dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backBtn">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/blue">
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="95dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="95dp"
-                android:layout_marginBottom="10dp"
-                android:text="Shipping Details"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Payment Details"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/textInputNameBox"
+                app:layout_constraintBottom_toTopOf="@+id/textInputNumberBox"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputNameBox"
+                android:id="@+id/textInputNumberBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/textInputPhoneBox"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/textInputDateBox"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditName"
+                    android:id="@+id/textInputEditNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputPhoneBox"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/textInputAddressBox"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputNameBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Phone"
-                    android:inputType="phone" />
+                    android:hint="Card Number"
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputAddressBox"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:id="@+id/textInputDateBox"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/textInputCityBox"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/textInputCardnameBox"
+                app:layout_constraintEnd_toStartOf="@+id/textInputCvvBox"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputPhoneBox">
+                app:layout_constraintTop_toBottomOf="@+id/textInputNumberBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditAdress"
+                    android:id="@+id/textInputEditDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Address"
-                    android:inputType="text|textPostalAddress|textMultiLine" />
+                    android:hint="MM/YY"
+                    android:inputType="datetime|date" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputCityBox"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
+                android:id="@+id/textInputCvvBox"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/textInputPinBox"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/textInputCardnameBox"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputAddressBox">
+                app:layout_constraintStart_toEndOf="@+id/textInputDateBox"
+                app:layout_constraintTop_toBottomOf="@+id/textInputNumberBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditCity"
+                    android:id="@+id/textInputEditCvv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="City"
-                    android:inputType="text" />
+                    android:hint="CVV"
+                    android:inputType="number|numberPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputPinBox"
+                android:id="@+id/textInputCardnameBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/orderBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputCityBox">
+                app:layout_constraintTop_toBottomOf="@+id/textInputDateBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditPin"
+                    android:id="@+id/textInputEditCardname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Zip Code"
-                    android:inputType="text" />
+                    android:hint="Name on Card"
+                    android:inputType="text|textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/continueBtn"
-                android:layout_width="278dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="45dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="45dp"
-                android:layout_marginBottom="20dp"
+                android:id="@+id/orderBtn"
+                android:layout_width="251dp"
+                android:layout_height="53dp"
+                android:layout_marginBottom="5dp"
                 android:backgroundTint="@color/blue"
-                android:pointerIcon="arrow"
-                android:text="Continue"
-                android:textSize="18sp"
-                app:icon="@drawable/left_arrow_24"
-                app:iconGravity="textEnd"
-                app:iconSize="25dp"
+                android:text="Place Order"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputPinBox" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputCardnameBox"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

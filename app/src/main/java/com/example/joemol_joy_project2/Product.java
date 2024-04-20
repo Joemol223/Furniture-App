@@ -6,18 +6,20 @@ public class Product {
     private String name;
     private String desc;
     private String longDesc;
+    private String color;
     private double price;
 
     public Product(){
 
     }
 
-    public Product(String url, String detailUrl, String name, String desc,String longDesc, double price) {
+    public Product(String url, String detailUrl, String name, String desc,String longDesc, String color, double price) {
         this.url = url;
         this.detailUrl = detailUrl;
         this.name = name;
         this.desc = desc;
         this.longDesc = longDesc;
+        this.color = color;
         this.price = price;
     }
 
@@ -55,6 +57,12 @@ public class Product {
 
     public void setLongDesc(String longDesc) {
         this.longDesc = longDesc;
+    }
+    public String getColor() {
+        return color;
+    }
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public double getPrice() {

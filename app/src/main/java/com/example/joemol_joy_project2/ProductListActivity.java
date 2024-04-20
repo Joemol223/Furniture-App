@@ -94,10 +94,11 @@ public class ProductListActivity extends AppCompatActivity implements ProductInt
                     String longDesc = productSnapshot.child("longDesc").getValue(String.class);
                     String url = productSnapshot.child("url").getValue(String.class);
                     String detailUrl = productSnapshot.child("detailUrl").getValue(String.class);
+                    String color = productSnapshot.child("color").getValue(String.class);
                     Double price = productSnapshot.child("price").getValue(Double.class);
 
-                    if (name != null && detailUrl != null && desc != null && longDesc != null &&  url != null && price != null) {
-                        Product product = new Product(url, detailUrl, name, desc,longDesc, price);
+                    if (name != null && detailUrl != null && desc != null && longDesc != null &&  url != null &&  color != null  && price != null) {
+                        Product product = new Product(url, detailUrl, name, desc,longDesc, color, price);
                         productList.add(product);
                     } else {
                         Log.e("Error", "One or more fields are null for product with ID: " + productSnapshot.getKey());
@@ -123,6 +124,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductInt
         intent.putExtra("price", productList.get(position).getPrice());
         intent.putExtra("url", productList.get(position).getImage());
         intent.putExtra("detailUrl", productList.get(position).getDetailUrl());
+        intent.putExtra("color", productList.get(position).getColor());
 
         startActivity(intent);
     }
