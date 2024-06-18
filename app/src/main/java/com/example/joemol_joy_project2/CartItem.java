@@ -5,7 +5,6 @@ public class CartItem {
     private String firebaseKey; // Firebase key for the cart item
     private String name;
     private double price;
-
     private double totalPrice;
     private int quantity;
     private String url;

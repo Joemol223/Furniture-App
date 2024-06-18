@@ -16,7 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/final_bg" />
+        app:srcCompat="@drawable/final_bg"
+        android:contentDescription="@string/background" />
 
     <ImageView
         android:id="@+id/imageView7"

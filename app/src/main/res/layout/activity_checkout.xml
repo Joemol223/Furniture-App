@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_arrow" />
+        app:srcCompat="@drawable/back_arrow"
+        android:contentDescription="@string/back_button" />
 
     <ImageView
         android:id="@+id/imageView11"
@@ -34,7 +35,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.208"
-        app:srcCompat="@drawable/grotto_logo" />
+        app:srcCompat="@drawable/grotto_logo"
+        android:contentDescription="@string/logo" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView5"
@@ -63,7 +65,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="95dp"
                 android:layout_marginBottom="10dp"
-                android:text="Shipping Details"
+                android:text="@string/shipping_details"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textInputNameBox"
@@ -88,7 +90,7 @@
                     android:id="@+id/textInputEditName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name"
+                    android:hint="@string/name"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +111,7 @@
                     android:id="@+id/textInputEditPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone"
+                    android:hint="@string/phone"
                     android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,7 +131,7 @@
                     android:id="@+id/textInputEditAdress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Address"
+                    android:hint="@string/address"
                     android:inputType="text|textPostalAddress|textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,7 +151,7 @@
                     android:id="@+id/textInputEditCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="City"
+                    android:hint="@string/city"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,7 +170,7 @@
                     android:id="@+id/textInputEditPin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Zip Code"
+                    android:hint="@string/zip_code"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -182,7 +184,7 @@
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/blue"
                 android:pointerIcon="arrow"
-                android:text="Continue"
+                android:text="@string/continue_word"
                 android:textSize="18sp"
                 app:icon="@drawable/left_arrow_24"
                 app:iconGravity="textEnd"

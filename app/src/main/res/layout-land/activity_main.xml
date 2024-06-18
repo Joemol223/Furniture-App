@@ -14,7 +14,8 @@
         app:layout_constraintBaseline_toBaselineOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/landscape_bg" />
+        app:srcCompat="@drawable/landscape_bg"
+        android:contentDescription="@string/landscape_background" />
 
     <ImageView
         android:id="@+id/imageView7"

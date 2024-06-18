@@ -39,7 +39,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/grotto_logo" />
+        app:srcCompat="@drawable/grotto_logo"
+        android:contentDescription="@string/logo" />
 
     <TextView
         android:id="@+id/textView4"
@@ -48,7 +49,7 @@
         android:layout_marginStart="148dp"
         android:layout_marginEnd="148dp"
         android:layout_marginBottom="5dp"
-        android:text="Products"
+        android:text="@string/products"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/rView"

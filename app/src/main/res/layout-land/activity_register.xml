@@ -14,7 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/landscape_bg" />
+        app:srcCompat="@drawable/landscape_bg"
+        android:contentDescription="@string/landscape_background" />
 
     <ImageView
         android:id="@+id/imageView12"
@@ -28,7 +29,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline11"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/grotto_logo" />
+        app:srcCompat="@drawable/grotto_logo"
+        android:contentDescription="@string/logo" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"

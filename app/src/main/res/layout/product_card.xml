@@ -28,7 +28,8 @@
             app:layout_constraintEnd_toStartOf="@+id/productName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/sofa" />
+            app:srcCompat="@drawable/sofa"
+            android:contentDescription="@string/sofa_image" />
 
         <TextView
             android:id="@+id/productName"
@@ -87,7 +88,7 @@
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/white"
             android:paddingHorizontal="15dp"
-            android:text="Add To Cart"
+            android:text="@string/add_to_cart"
             android:textColor="@color/blue"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"

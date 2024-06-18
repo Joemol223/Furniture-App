@@ -48,7 +48,7 @@
                 android:layout_height="0dp"
                 android:layout_marginEnd="96dp"
                 android:gravity="center"
-                android:text="Logout"
+                android:text="@string/logout"
                 android:textColor="@color/blue"
                 android:textColorHint="@color/blue"
                 android:textSize="20sp"
@@ -68,7 +68,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/logoutLink"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userEmail"
-                app:srcCompat="@drawable/logout" />
+                app:srcCompat="@drawable/logout"
+                android:contentDescription="@string/logout" />
 
             <TextView
                 android:id="@+id/userEmail"
@@ -94,7 +95,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.497"
-                app:srcCompat="@drawable/account" />
+                app:srcCompat="@drawable/account"
+                android:contentDescription="@string/account_symbol" />
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -106,7 +108,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/grotto_logo" />
+                app:srcCompat="@drawable/grotto_logo"
+                android:contentDescription="@string/logo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -120,6 +123,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/final_bg" />
+        app:srcCompat="@drawable/final_bg"
+        android:contentDescription="@string/background" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

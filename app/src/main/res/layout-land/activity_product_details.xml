@@ -20,7 +20,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/grotto_logo" />
+        app:srcCompat="@drawable/grotto_logo"
+        android:contentDescription="@string/logo" />
 
     <ImageView
         android:id="@+id/backBtn"
@@ -34,7 +35,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/back_arrow" />
+        app:srcCompat="@drawable/back_arrow"
+        android:contentDescription="@string/back_button" />
 
     <ImageView
         android:id="@+id/cartImage"
@@ -49,7 +51,8 @@
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/cart_image" />
+        app:srcCompat="@drawable/cart_image"
+        android:contentDescription="@string/cart_button" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
@@ -73,7 +76,7 @@
                 android:id="@+id/imageDetail"
                 android:layout_width="233dp"
                 android:layout_height="291dp"
-                android:contentDescription="Product Image"
+                android:contentDescription="@string/product_image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/nameDetail"
                 app:layout_constraintStart_toStartOf="parent"
@@ -139,7 +142,8 @@
                 app:layout_constraintStart_toEndOf="@+id/imageDetail"
                 app:layout_constraintTop_toBottomOf="@+id/descDetail"
                 app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/minus" />
+                app:srcCompat="@drawable/minus"
+                android:contentDescription="@string/minus_button" />
 
             <ImageView
                 android:id="@+id/addCount"
@@ -153,7 +157,8 @@
                 app:layout_constraintStart_toEndOf="@+id/count"
                 app:layout_constraintTop_toBottomOf="@+id/descDetail"
                 app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/plus" />
+                app:srcCompat="@drawable/plus"
+                android:contentDescription="@string/plus_button" />
 
             <TextView
                 android:id="@+id/count"
@@ -194,7 +199,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Color:"
+                android:text="@string/color"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/descDetail"

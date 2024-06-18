@@ -109,7 +109,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
                         String existingProductName = productSnapshot.child("productName").getValue(String.class);
                         if (existingProductName != null && existingProductName.equals(currentItem.getName())) {
-                            // Product exists in the cart, update its quantity and price
                             productSnapshot.getRef().child("totalQuantity").setValue(currentItem.getQuantity());
                             productSnapshot.getRef().child("totalPrice").setValue(totalPrice);
                             break;
